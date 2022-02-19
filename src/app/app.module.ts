@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {AmplifyAuthenticatorModule} from "@aws-amplify/ui-angular";
@@ -6,6 +6,7 @@ import {AmplifyAuthenticatorModule} from "@aws-amplify/ui-angular";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
+import {createCustomElement} from "@angular/elements";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,14 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  //bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const register = createCustomElement(AppComponent,
+      { injector: this.injector });
+    customElements.define('aws-register-form', register);
+  }
+}
