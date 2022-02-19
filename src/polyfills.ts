@@ -52,3 +52,6 @@ import 'zone.js';  // Included with Angular CLI.
  * APPLICATION IMPORTS
  */
 (window as any)['global'] = window;
+
+import '@webcomponents/custom-elements/src/native-shim';
+import '@webcomponents/custom-elements/custom-elements.min';
