@@ -316,7 +316,7 @@
 
 
 
-  <amplify-authenticator>
+  <amplify-authenticator [signUpAttributes]="['email','phone_number','address']">
     <ng-template
       amplifySlot="authenticated"
       let-user="user"
